@@ -8,9 +8,9 @@ public final class LapisDatastorePlugin extends LapisCorePlugin {
 
     @Override
     public void onEnable() {
+        getDataFolder().mkdir();
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
-            String name = getDescription().getName();
-            LapisUpdater updater = new LapisUpdater(this, name, "Dart2112", name, "master");
+            LapisUpdater updater = new LapisUpdater(this, "LapisDatastorePlugin", "Dart2112", "LapisDatastorePlugin", "master");
             if (updater.checkUpdate()) {
                 updater.downloadUpdate();
             }
