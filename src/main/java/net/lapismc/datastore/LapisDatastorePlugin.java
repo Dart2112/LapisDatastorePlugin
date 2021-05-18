@@ -1,4 +1,4 @@
-package net.lapimc.lapisdatastore;
+package net.lapismc.datastore;
 
 import net.lapismc.lapiscore.LapisCorePlugin;
 import net.lapismc.lapiscore.utils.LapisUpdater;
