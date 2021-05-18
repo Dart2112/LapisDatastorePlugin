@@ -1,2 +1,5 @@
 0.1.0:
   - "Initial release"
+1.2.1:
+  - "Rolled back to H2 driver 1.4.199 as there is a fatal issue with 1.4.200"
+  - "Please restart to install this update immediately!!"
