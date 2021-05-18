@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id "com.github.johnrengelman.shadow" version "5.2.0"
+}
+
+group = 'net.lapimc'
+version = '1.2.0'
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+}
+
+tasks.register('sendToUpdater', Copy) {
+    from layout.buildDirectory.dir("libs/" + archivesBaseName + ".jar")
+    into layout.projectDirectory.dir("updater/" + project.name + "/")
+}
+
+dependencies {
+    compile 'net.lapismc:LapisDataStore:' + project.version
+    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+}
+
+shadowJar {
+    archiveFileName.set(archivesBaseName + ".jar")
+    exclude 'javax/**'
+}
+
+processResources {
+    filter {
+        it.replace('${project.version}', project.getVersion())
+    }
+}
